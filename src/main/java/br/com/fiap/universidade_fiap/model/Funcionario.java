@@ -9,6 +9,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "funcionario")
@@ -19,10 +21,12 @@ public class Funcionario {
     private Long id;
 
     @Column(nullable = false, length = 150)
+    @NotBlank(message = "Nome é obrigatório")
     private String nome;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_filial", nullable = false)
+    @NotNull(message = "Filial é obrigatória")
     private Filial filial;
 
     public Long getId() {

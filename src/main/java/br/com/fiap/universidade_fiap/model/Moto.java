@@ -9,6 +9,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "moto")
@@ -19,19 +24,28 @@ public class Moto {
     private Long id;
 
     @Column(nullable = false, length = 7)
+    @NotBlank(message = "Placa é obrigatória")
+    @Size(min = 7, max = 7, message = "Placa deve ter 7 caracteres")
     private String placa;
 
     @Column(nullable = false)
+    @NotNull(message = "Ano é obrigatório")
+    @Min(value = 1900, message = "Ano inválido")
+    @Max(value = 2100, message = "Ano inválido")
     private Integer ano;
 
     @Column(nullable = false, length = 50)
+    @NotBlank(message = "Modelo é obrigatório")
+    @Size(max = 50, message = "Modelo deve ter até 50 caracteres")
     private String modelo;
 
     @Column(name = "tipo_combustivel", nullable = false, length = 50)
+    @NotBlank(message = "Tipo de combustível é obrigatório")
     private String tipoCombustivel;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_filial", nullable = false)
+    @NotNull(message = "Filial é obrigatória")
     private Filial filial;
 
     public Long getId() {

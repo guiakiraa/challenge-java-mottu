@@ -21,12 +21,14 @@
                     <div class="col-md-8">
                         <label class="form-label">Nome</label>
                         <input class="form-control" type="text" th:field="*{nome}" required />
+                        <div class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Endereço</label>
                         <select class="form-select" th:field="*{endereco.id}" required>
                             <option th:each="e : ${enderecos}" th:value="${e.id}" th:text="${e.logradouro + ', ' + e.numero + ' - ' + e.cidade}"></option>
                         </select>
+                        <div class="text-danger" th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}"></div>
                     </div>
                 </div>
                 <div class="mt-4 d-flex gap-2">

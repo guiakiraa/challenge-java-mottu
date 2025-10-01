@@ -21,24 +21,29 @@
                     <div class="col-md-3">
                         <label class="form-label">Placa</label>
                         <input class="form-control" type="text" th:field="*{placa}" maxlength="7" required />
+                        <div class="text-danger" th:if="${#fields.hasErrors('placa')}" th:errors="*{placa}"></div>
                     </div>
                     <div class="col-md-2">
                         <label class="form-label">Ano</label>
                         <input class="form-control" type="number" th:field="*{ano}" required />
+                        <div class="text-danger" th:if="${#fields.hasErrors('ano')}" th:errors="*{ano}"></div>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Modelo</label>
                         <input class="form-control" type="text" th:field="*{modelo}" required />
+                        <div class="text-danger" th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}"></div>
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Tipo Combustível</label>
                         <input class="form-control" type="text" th:field="*{tipoCombustivel}" required />
+                        <div class="text-danger" th:if="${#fields.hasErrors('tipoCombustivel')}" th:errors="*{tipoCombustivel}"></div>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Filial</label>
                         <select class="form-select" th:field="*{filial.id}" required>
                             <option th:each="f : ${filiais}" th:value="${f.id}" th:text="${f.nome}"></option>
                         </select>
+                        <div class="text-danger" th:if="${#fields.hasErrors('filial')}" th:errors="*{filial}"></div>
                     </div>
                 </div>
                 <div class="mt-4 d-flex gap-2">

@@ -21,30 +21,37 @@
                     <div class="col-md-6">
                         <label class="form-label">Logradouro</label>
                         <input class="form-control" type="text" th:field="*{logradouro}" required />
+                        <div class="text-danger" th:if="${#fields.hasErrors('logradouro')}" th:errors="*{logradouro}"></div>
                     </div>
                     <div class="col-md-2">
                         <label class="form-label">Número</label>
                         <input class="form-control" type="number" th:field="*{numero}" required />
+                        <div class="text-danger" th:if="${#fields.hasErrors('numero')}" th:errors="*{numero}"></div>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Bairro</label>
                         <input class="form-control" type="text" th:field="*{bairro}" required />
+                        <div class="text-danger" th:if="${#fields.hasErrors('bairro')}" th:errors="*{bairro}"></div>
                     </div>
                     <div class="col-md-5">
                         <label class="form-label">Cidade</label>
                         <input class="form-control" type="text" th:field="*{cidade}" required />
+                        <div class="text-danger" th:if="${#fields.hasErrors('cidade')}" th:errors="*{cidade}"></div>
                     </div>
                     <div class="col-md-2">
                         <label class="form-label">Estado</label>
                         <input class="form-control" type="text" th:field="*{estado}" maxlength="2" required />
+                        <div class="text-danger" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
                     </div>
                     <div class="col-md-5">
                         <label class="form-label">CEP</label>
                         <input class="form-control" type="text" th:field="*{cep}" required />
+                        <div class="text-danger" th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}"></div>
                     </div>
                     <div class="col-md-12">
                         <label class="form-label">Complemento</label>
                         <input class="form-control" type="text" th:field="*{complemento}" />
+                        <div class="text-danger" th:if="${#fields.hasErrors('complemento')}" th:errors="*{complemento}"></div>
                     </div>
                 </div>
                 <div class="mt-4 d-flex gap-2">
