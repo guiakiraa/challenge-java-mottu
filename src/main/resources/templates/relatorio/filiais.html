@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório por Filial</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<div th:replace="~{fragmentos :: menu}"></div>
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h3 mb-0">Relatório por Filial</h1>
+        <a href="/filiais" class="btn btn-outline-secondary">Voltar</a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Filial</th>
+                            <th>Total de Motos</th>
+                            <th>Total de Funcionários</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="linha : ${linhas}">
+                            <td th:text="${linha.filialNome}"></td>
+                            <td th:text="${linha.totalMotos}"></td>
+                            <td th:text="${linha.totalFuncionarios}"></td>
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(linhas)}">
+                            <td colspan="3">Nenhuma filial encontrada</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Total</th>
+                            <th th:text="${totalMotos}"></th>
+                            <th th:text="${totalFuncionarios}"></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
