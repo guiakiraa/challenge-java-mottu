@@ -10,6 +10,11 @@
 
 ---
 
+## Link do vídeo
+https://youtu.be/axcRM0H0Ywo?si=0Kn61MdyFlZpSl5U
+
+---
+
 ## Instruções para Executar
 
 ### Pré-requisitos
