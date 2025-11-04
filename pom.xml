@@ -45,8 +45,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc11</artifactId>
+			<version>23.7.0.25.01</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -68,9 +69,19 @@
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
+		<!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
 		<dependency>
-		    <groupId>org.flywaydb</groupId>
-		    <artifactId>flyway-core</artifactId>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>11.15.0</version>
+		</dependency>
+		<!-- Flyway suporte Oracle (necessário a partir das versões recentes) -->
+		<!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-database-oracle -->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-database-oracle</artifactId>
+			<version>11.15.0</version>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 

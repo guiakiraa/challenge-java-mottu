@@ -17,8 +17,8 @@
 						 style="width: 80px; height: 80px; border-radius: 50%; margin-right: 20px;"
 						 onerror="this.src='https://via.placeholder.com/80x80/007bff/ffffff?text=U'">
 					<div>
-						<h2 th:text="'Olá, ' + ${usuario?.nomePerfil} + '!'">Olá, Usuário!</h2>
-						<p class="mb-0" th:text="'Usuário: ' + ${usuario?.username}">Usuário: admin</p>
+					<h2><span th:text="#{saudacao}">Olá,</span> <span th:text="${usuario?.nomePerfil}">Usuário</span>!</h2>
+					<p class="mb-0"><span th:text="#{label.usuario}">Usuário:</span> <span th:text="${usuario?.username}">admin</span></p>
 						<p class="mb-0" th:if="${usuario?.funcoes != null and !usuario.funcoes.empty}">
 							<strong>Funções:</strong> 
 							<span th:each="funcao, iterStat : ${usuario.funcoes}" 
@@ -29,8 +29,8 @@
 			</div>
 			<div class="col-md-4 text-end">
 				<div class="mt-3">
-					<h4>Sistema de Gerenciamento Mottu</h4>
-					<p class="mb-0">Gestão Completa</p>
+					<h4 th:text="#{app.titulo}">Sistema de Gerenciamento Mottu</h4>
+					<p class="mb-0" th:text="#{app.subtitulo}">Gestão Completa</p>
 				</div>
 			</div>
 		</div>
@@ -48,9 +48,9 @@
 				<div class="card h-100 shadow-sm">
 					<div class="card-body text-center">
 						<i class="fas fa-map-marker-alt fa-3x text-primary mb-3"></i>
-						<h5 class="card-title">Endereços</h5>
-						<p class="card-text">Gerencie os endereços cadastrados no sistema.</p>
-						<a href="/enderecos" class="btn btn-primary">Acessar</a>
+						<h5 class="card-title" th:text="#{card.enderecos.titulo}">Endereços</h5>
+						<p class="card-text" th:text="#{card.enderecos.texto}">Gerencie os endereços cadastrados no sistema.</p>
+						<a href="/enderecos" class="btn btn-primary" th:text="#{botao.acessar}">Acessar</a>
 					</div>
 				</div>
 			</div>
@@ -59,9 +59,9 @@
 				<div class="card h-100 shadow-sm">
 					<div class="card-body text-center">
 						<i class="fas fa-building fa-3x text-success mb-3"></i>
-						<h5 class="card-title">Filiais</h5>
-						<p class="card-text">Gerencie as filiais do sistema.</p>
-						<a href="/filiais" class="btn btn-success">Acessar</a>
+						<h5 class="card-title" th:text="#{card.filiais.titulo}">Filiais</h5>
+						<p class="card-text" th:text="#{card.filais.texto}">Gerencie as filiais do sistema.</p>
+						<a href="/filiais" class="btn btn-success" th:text="#{botao.acessar}">Acessar</a>
 					</div>
 				</div>
 			</div>
@@ -70,9 +70,9 @@
 				<div class="card h-100 shadow-sm">
 					<div class="card-body text-center">
 						<i class="fas fa-motorcycle fa-3x text-warning mb-3"></i>
-						<h5 class="card-title">Motos</h5>
-						<p class="card-text">Gerencie o cadastro de motos.</p>
-						<a href="/motos" class="btn btn-warning">Acessar</a>
+						<h5 class="card-title" th:text="#{card.motos.titulo}">Motos</h5>
+						<p class="card-text" th:text="#{card.motos.texto}">Gerencie o cadastro de motos.</p>
+						<a href="/motos" class="btn btn-warning" th:text="#{botao.acessar}">Acessar</a>
 					</div>
 				</div>
 			</div>
@@ -81,33 +81,23 @@
 				<div class="card h-100 shadow-sm">
 					<div class="card-body text-center">
 						<i class="fas fa-users fa-3x text-info mb-3"></i>
-						<h5 class="card-title">Funcionários</h5>
-						<p class="card-text">Gerencie os funcionários do sistema.</p>
-						<a href="/funcionarios" class="btn btn-info">Acessar</a>
+						<h5 class="card-title" th:text="#{card.funcionarios.titulo}">Funcionários</h5>
+						<p class="card-text" th:text="#{card.funcionarios.texto}">Gerencie os funcionários do sistema.</p>
+						<a href="/funcionarios" class="btn btn-info" th:text="#{botao.acessar}">Acessar</a>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-lg-3 col-md-6 mb-4">
-				<div class="card h-100 shadow-sm">
-					<div class="card-body text-center">
-						<i class="fas fa-location-dot fa-3x text-danger mb-3"></i>
-						<h5 class="card-title">Localizações</h5>
-						<p class="card-text">Gerencie as localizações cadastradas.</p>
-						<a href="/localizacoes" class="btn btn-danger">Acessar</a>
-					</div>
-				</div>
-			</div>
 			
 			<div class="col-lg-3 col-md-6 mb-4" th:if="${usuario?.funcoes != null and usuario.funcoes.![nome].contains(T(br.com.fiap.universidade_fiap.model.EnumFuncao).ADMIN)}">
 				<div class="card h-100 shadow-sm">
 					<div class="card-body text-center">
 						<i class="fas fa-user-plus fa-3x text-secondary mb-3"></i>
-						<h5 class="card-title">Usuários</h5>
-						<p class="card-text">Gerencie usuários do sistema (Admin).</p>
-						<a href="/usuario/novo" class="btn btn-secondary">Acessar</a>
+						<h5 class="card-title" th:text="#{card.usuarios.titulo}">Usuários</h5>
+						<p class="card-text" th:text="#{card.usuarios.texto}">Gerencie usuários do sistema (Admin).</p>
+						<a href="/usuario/novo" class="btn btn-secondary" th:text="#{botao.acessar}">Acessar</a>
 					</div>
 				</div>
 			</div>
@@ -118,24 +108,24 @@
 			<div class="col-12">
 				<div class="card">
 					<div class="card-header">
-						<h5 class="mb-0">Informações do Sistema</h5>
+						<h5 class="mb-0" th:text="#{sec.info_sistema.titulo}">Informações do Sistema</h5>
 					</div>
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-4">
-								<h6>Status da Sessão</h6>
-								<span class="badge bg-success">Ativa</span>
+								<h6 th:text="#{sec.status_sessao}">Status da Sessão</h6>
+								<span class="badge bg-success" th:text="#{status.ativa}">Ativa</span>
 							</div>
 							<div class="col-md-4">
-								<h6>Último Acesso</h6>
-								<small class="text-muted">Agora</small>
+								<h6 th:text="#{sec.ultimo_acesso}">Último Acesso</h6>
+								<small class="text-muted" th:text="#{tempo.agora}">Agora</small>
 							</div>
 							<div class="col-md-4">
-								<h6>Perfil</h6>
+								<h6 th:text="#{sec.perfil}">Perfil</h6>
 								<span th:if="${usuario?.funcoes != null and usuario.funcoes.![nome].contains(T(br.com.fiap.universidade_fiap.model.EnumFuncao).ADMIN)}" 
-									  class="badge bg-danger">Administrador</span>
+									  class="badge bg-danger" th:text="#{perfil.admin}">Administrador</span>
 								<span th:unless="${usuario?.funcoes != null and usuario.funcoes.![nome].contains(T(br.com.fiap.universidade_fiap.model.EnumFuncao).ADMIN)}" 
-									  class="badge bg-primary">Usuário</span>
+									  class="badge bg-primary" th:text="#{perfil.usuario}">Usuário</span>
 							</div>
 						</div>
 					</div>

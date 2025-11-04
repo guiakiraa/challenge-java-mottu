@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>Filiais</title>
+    <title th:text="#{titulo.filiais}">Filiais</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
@@ -11,10 +11,10 @@
     <div th:replace="~{fragmentos :: menu}" />
 
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1 class="h3 mb-0">Filiais</h1>
+        <h1 class="h3 mb-0" th:text="#{titulo.filiais}">Filiais</h1>
         <div class="d-flex gap-2">
-            <a href="/filiais/relatorio" class="btn btn-outline-secondary">Relatório</a>
-            <a href="/filial/novo" class="btn btn-primary">+ Nova Filial</a>
+            <a href="/filiais/relatorio" class="btn btn-outline-secondary" th:text="#{acao.relatorio}">Relatório</a>
+            <a href="/filial/novo" class="btn btn-primary" th:text="#{acao.nova_filial}">+ Nova Filial</a>
         </div>
     </div>
 
@@ -26,11 +26,11 @@
                 <table class="table table-hover table-striped mb-0">
                     <thead class="table-light">
                         <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>Cidade</th>
-                            <th>Estado</th>
-                            <th class="text-end">Ações</th>
+                            <th th:text="#{col.id}">ID</th>
+                            <th th:text="#{col.nome}">Nome</th>
+                            <th th:text="#{col.cidade}">Cidade</th>
+                            <th th:text="#{col.estado}">Estado</th>
+                            <th class="text-end" th:text="#{comum.acoes}">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,9 +40,9 @@
                             <td th:text="${f.endereco.cidade}"></td>
                             <td th:text="${f.endereco.estado}"></td>
                             <td class="text-end">
-                                <a class="btn btn-sm btn-outline-primary" th:href="@{'/filial/detalhes/' + ${f.id}}">Detalhes</a>
-                                <a class="btn btn-sm btn-warning" th:href="@{'/filial/editar/' + ${f.id}}">Editar</a>
-                                <a class="btn btn-sm btn-danger" th:href="@{'/filial/remover/' + ${f.id}}" onclick="return confirm('Remover esta filial?');">Remover</a>
+                                <a class="btn btn-sm btn-outline-primary" th:href="@{'/filial/detalhes/' + ${f.id}}" th:text="#{comum.detalhes}">Detalhes</a>
+                                <a class="btn btn-sm btn-warning" th:href="@{'/filial/editar/' + ${f.id}}" th:text="#{comum.editar}">Editar</a>
+                                <a class="btn btn-sm btn-danger" th:href="@{'/filial/remover/' + ${f.id}}" th:onclick="'return confirm(\'' + #{comum.confirm.remover} + '\');'" th:text="#{comum.remover}">Remover</a>
                             </td>
                         </tr>
                     </tbody>

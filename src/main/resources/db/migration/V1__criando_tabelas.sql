@@ -1,69 +1,62 @@
-CREATE TABLE IF NOT EXISTS FUNCAO (
-    id bigint AUTO_INCREMENT,
-    nome enum('ADMIN', 'GERENTE'),
-    primary key (id)
+CREATE TABLE RM556779.FUNCAO (
+    id NUMBER(19) GENERATED AS IDENTITY,
+    nome VARCHAR2(20) NOT NULL,
+    CONSTRAINT PK_FUNCAO PRIMARY KEY (id),
+    CONSTRAINT CK_FUNCAO_NOME CHECK (nome IN ('ADMIN','GERENTE'))
 );
 
-CREATE TABLE IF NOT EXISTS USUARIO (
-    id bigint AUTO_INCREMENT,
-    img_perfil varchar(255),
-    nome_perfil varchar(255),
-    senha varchar(255),
-    username varchar(255),
-    primary key (id)
+CREATE TABLE RM556779.USUARIO (
+    id NUMBER(19) GENERATED AS IDENTITY,
+    img_perfil VARCHAR2(255),
+    nome_perfil VARCHAR2(255),
+    senha VARCHAR2(255),
+    username VARCHAR2(255),
+    CONSTRAINT PK_USUARIO PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS USUARIO_FUNCAO_TAB(
-    id_funcao bigint not null,
-    id_usuario bigint not null,
-    primary key (id_funcao, id_usuario),
-    constraint FK_usuario_funcao_func foreign key (id_funcao) references FUNCAO(id),
-    constraint FK_usuario_funcao_user foreign key (id_usuario) references USUARIO(id)
+CREATE TABLE RM556779.USUARIO_FUNCAO_TAB (
+    id_funcao NUMBER(19) NOT NULL,
+    id_usuario NUMBER(19) NOT NULL,
+    CONSTRAINT PK_USUARIO_FUNCAO PRIMARY KEY (id_funcao, id_usuario),
+    CONSTRAINT FK_USU_FUNCAO_FUNC FOREIGN KEY (id_funcao) REFERENCES RM556779.FUNCAO(id),
+    CONSTRAINT FK_USU_FUNCAO_USER FOREIGN KEY (id_usuario) REFERENCES RM556779.USUARIO(id)
 );
 
-CREATE TABLE IF NOT EXISTS endereco (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    logradouro VARCHAR(255) NOT NULL,
-    numero INT NOT NULL,
-    bairro VARCHAR(100) NOT NULL,
-    cidade VARCHAR(100) NOT NULL,
-    estado CHAR(2) NOT NULL,
-    cep CHAR(9) NOT NULL,
-    complemento VARCHAR(255)
+CREATE TABLE RM556779.ENDERECO (
+    id NUMBER(19) GENERATED AS IDENTITY,
+    logradouro VARCHAR2(255) NOT NULL,
+    numero NUMBER(10) NOT NULL,
+    bairro VARCHAR2(100) NOT NULL,
+    cidade VARCHAR2(100) NOT NULL,
+    estado VARCHAR2(2) NOT NULL,
+    cep VARCHAR2(9) NOT NULL,
+    complemento VARCHAR2(255),
+    CONSTRAINT PK_ENDERECO PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS filial (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    fk_endereco BIGINT NOT NULL,
-    CONSTRAINT FK_filial_endereco FOREIGN KEY (fk_endereco) REFERENCES endereco(id)
+CREATE TABLE RM556779.FILIAL (
+    id NUMBER(19) GENERATED AS IDENTITY,
+    nome VARCHAR2(100) NOT NULL,
+    fk_endereco NUMBER(19) NOT NULL,
+    CONSTRAINT PK_FILIAL PRIMARY KEY (id),
+    CONSTRAINT FK_FILIAL_ENDERECO FOREIGN KEY (fk_endereco) REFERENCES RM556779.ENDERECO(id)
 );
 
-CREATE TABLE IF NOT EXISTS moto (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    placa VARCHAR(7) NOT NULL,
-    ano INT NOT NULL,
-    modelo VARCHAR(50) NOT NULL,
-    tipo_combustivel VARCHAR(50) NOT NULL,
-    fk_filial BIGINT NOT NULL,
-    CONSTRAINT FK_moto_filial FOREIGN KEY (fk_filial) REFERENCES filial(id)
+CREATE TABLE RM556779.MOTO (
+    id NUMBER(19) GENERATED AS IDENTITY,
+    placa VARCHAR2(7) NOT NULL,
+    ano NUMBER(10) NOT NULL,
+    modelo VARCHAR2(50) NOT NULL,
+    tipo_combustivel VARCHAR2(50) NOT NULL,
+    fk_filial NUMBER(19) NOT NULL,
+    CONSTRAINT PK_MOTO PRIMARY KEY (id),
+    CONSTRAINT FK_MOTO_FILIAL FOREIGN KEY (fk_filial) REFERENCES RM556779.FILIAL(id)
 );
 
-CREATE TABLE IF NOT EXISTS funcionario (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(150) NOT NULL,
-    fk_filial BIGINT NOT NULL,
-    CONSTRAINT FK_funcionario_filial FOREIGN KEY (fk_filial) REFERENCES filial(id)
+CREATE TABLE RM556779.FUNCIONARIO (
+    id NUMBER(19) GENERATED AS IDENTITY,
+    nome VARCHAR2(150) NOT NULL,
+    fk_filial NUMBER(19) NOT NULL,
+    CONSTRAINT PK_FUNCIONARIO PRIMARY KEY (id),
+    CONSTRAINT FK_FUNCIONARIO_FILIAL FOREIGN KEY (fk_filial) REFERENCES RM556779.FILIAL(id)
 );
-
-CREATE TABLE IF NOT EXISTS localizacao (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    pontox DOUBLE NOT NULL,
-    pontoy DOUBLE NOT NULL,
-    data_hora TIMESTAMP NOT NULL,
-    fonte VARCHAR(50) NOT NULL,
-    fk_moto BIGINT NOT NULL,
-    CONSTRAINT FK_localizacao_moto FOREIGN KEY (fk_moto) REFERENCES moto(id)
-);
-
-
